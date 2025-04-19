@@ -8,13 +8,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_maplibre_demo/main.dart';
+import 'package:maplibre_flutter_test/main.dart';
 
 void main() {
   // TODO: Maybe some tests later
-  // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-  //   // Build our app and trigger a frame.
-  //   await tester.pumpWidget(const MyApp());
+  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
   //
   //   // Verify that our counter starts at 0.
   //   expect(find.text('0'), findsOneWidget);
@@ -27,5 +27,5 @@ void main() {
   //   // Verify that our counter has incremented.
   //   expect(find.text('0'), findsNothing);
   //   expect(find.text('1'), findsOneWidget);
-  // });
+  });
 }

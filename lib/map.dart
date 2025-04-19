@@ -1,17 +1,23 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
 
-const initCenter = LatLng(35.0, 138.5);
-const initZoom = 4.0;
-const initialCameraPosition =
-    CameraPosition(target: initCenter, zoom: initZoom);
+import 'map_funcs.dart';
 
-const mapStyleUrl = // MapLibreStyles.demo // default
-    // 'styles/tile_openstreetmap.json'
-    'styles/maplibre_demo.json'
-    // 'https://api.maptiler.com/maps/019643c9-aea6-7b85-9565-0870684731f0/style.json?key=EZ0ds0SzFjV0svFuQ2Ki'
-    // 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json'
-    ;
+const LatLng initCenter = LatLng(35.0, 138.5);
+const double initZoom = 4.0;
+const CameraPosition initialCameraPosition = CameraPosition(
+  target: initCenter,
+  zoom: initZoom
+);
+
+const mapStyleUrl =
+  // MapLibreStyles.demo // default
+  'styles/tile_openstreetmap.json'
+  // 'styles/maplibre_demo.json'
+  // 'https://api.maptiler.com/maps/019643c9-aea6-7b85-9565-0870684731f0/style.json?key=EZ0ds0SzFjV0svFuQ2Ki'
+  // 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json'
+  ;
 
 class MapPage extends StatelessWidget {
   const MapPage({super.key});
@@ -30,22 +36,25 @@ class Map extends StatefulWidget {
 }
 
 class MapState extends State<Map> {
-  MapLibreMapController? mapController;
-  static const clusterLayer = "clusters";
-  static const unclusteredPointLayer = "unclustered-point";
+  MapLibreMapController? controller;
 
   @override
   void dispose() {
-    // mapController?.onFeatureTapped.remove(_onFeatureTapped);
     super.dispose();
   }
 
   void _onMapCreated(MapLibreMapController controller) async {
-    mapController = controller;
+    this.controller = controller;
   }
 
   void _onStyleLoadedCallback() async {
-    // await addRaster(mapController!);
+    await addBboxes(controller!);
+  }
+
+  // This method handles interaction with the actual earthquake points on iOS.
+  // See bug report: https://github.com/m0nac0/flutter-maplibre-gl/issues/160
+  void _onMapClick(Point<double> point, LatLng coordinates) async {
+    await onClickBbox(context, controller!, point);
   }
 
   @override
@@ -57,7 +66,7 @@ class MapState extends State<Map> {
         initialCameraPosition: initialCameraPosition,
         onMapCreated: _onMapCreated,
         onStyleLoadedCallback: _onStyleLoadedCallback,
-        // onMapClick: _onMapClick,
+        onMapClick: _onMapClick,
         trackCameraPosition: true,
       ),
     );

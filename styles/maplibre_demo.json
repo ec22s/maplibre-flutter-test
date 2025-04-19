@@ -1,0 +1,22 @@
+{
+  "version": 8,
+  "sources": {
+    "maplibre-demotiles": {
+      "type": "vector",
+      "url": "https://demotiles.maplibre.org/tiles/tiles.json"
+    }
+  },
+  "layers": [
+    {
+      "id": "coastline",
+      "type": "line",
+      "source": "maplibre-demotiles",
+      "source-layer": "countries",
+      "paint": {
+        "line-color": "#f198EC"
+      },
+      "minzoom": 0,
+      "maxzoom": 22
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-package com.example.maplibre_demo
+package com.ec22s.maplibre_flutter_test
 
 import io.flutter.embedding.android.FlutterActivity
 

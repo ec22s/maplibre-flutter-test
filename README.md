@@ -10,7 +10,7 @@
 
     - `MapLibreMap` 初期化時の `styleString` にファイルパスを指定すると使ってくれる☺️
 
-      ここにソースを挿入
+       https://github.com/maplibre/flutter-maplibre-gl/blob/main/maplibre_gl/lib/src/maplibre_map.dart#L121-L130
 
   - オリジナルにあった `annotation clustering` と `offline caching` を省略
 

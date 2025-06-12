@@ -5,11 +5,12 @@ import 'package:maplibre_gl/maplibre_gl.dart';
 
 import 'data_bboxes.dart';
 
-final String BBOX_SOURCE_ID = "bboxes";
-final String BBOX_LAYER_ID = "$BBOX_SOURCE_ID-layer";
+final String bboxSourceId = "bboxes";
+final String bboxLayerId = "$bboxSourceId-layer";
 final String bboxColor = "#987654";
-final String bboxFillOpacityHex = "22";
-final String bboxLineOpacityHex = "FF";
+// final String bboxFillOpacityHex = "22";
+// final String bboxLineOpacityHex = "FF";
+final double bboxFillOpacity = 0.25;
 
 final List<dynamic> bboxFeatures = BBOXES.asMap().entries.map((entry) {
   dynamic bbox = entry.value;
@@ -19,13 +20,15 @@ final List<dynamic> bboxFeatures = BBOXES.asMap().entries.map((entry) {
   double x1 = xs.reduce(max);
   double y0 = ys.reduce(min);
   double y1 = ys.reduce(max);
-  List<List<List<double>>> polygonCoords = [ [
-    [ x0, y0 ],
-    [ x1, y0 ],
-    [ x1, y1 ],
-    [ x0, y1 ],
-    [ x0, y0 ],
-  ] ];
+  List<List<List<double>>> polygonCoords = [
+    [
+      [x0, y0],
+      [x1, y0],
+      [x1, y1],
+      [x0, y1],
+      [x0, y0],
+    ]
+  ];
   return {
     "type": "Feature",
     // "properties": {
@@ -45,14 +48,13 @@ final Map<String, dynamic> bboxesGeoJson = {
   "features": bboxFeatures,
 };
 
-Future<void> onClickBbox(BuildContext context, MapLibreMapController controller, Point<double> point) async {
+Future<void> onClickBbox(BuildContext context, MapLibreMapController controller,
+    Point<double> point) async {
+  print("TODO: 一部デバイスで実行されてない");
   final color = Theme.of(context).primaryColor;
   final messenger = ScaffoldMessenger.of(context);
-  final features = await controller.queryRenderedFeatures(
-    point,
-    [BBOX_LAYER_ID],
-    null
-  );
+  final features =
+      await controller.queryRenderedFeatures(point, [bboxLayerId], null);
   if (features.isNotEmpty) {
     final Map<String, dynamic> feature = features.first;
     final Bbox bbox = BBOXES[feature['id']];
@@ -67,15 +69,16 @@ Future<void> onClickBbox(BuildContext context, MapLibreMapController controller,
 }
 
 Future<void> addBboxes(MapLibreMapController controller) async {
-  await controller.addGeoJsonSource(BBOX_SOURCE_ID, bboxesGeoJson);
+  await controller.addGeoJsonSource(bboxSourceId, bboxesGeoJson);
   await controller.addLayer(
-    BBOX_SOURCE_ID,
-    BBOX_LAYER_ID,
+    bboxSourceId,
+    bboxLayerId,
     FillLayerProperties(
-      fillColor: "$bboxColor$bboxFillOpacityHex",
-      fillOutlineColor: "$bboxColor$bboxLineOpacityHex",
+      fillColor: bboxColor, // #RRGGBBAA にするとデバイスによって差異出る
+      fillOpacity: bboxFillOpacity,
+      fillOutlineColor: bboxColor,
     ),
   );
-  print(bboxesGeoJson); // GeoJsonファイル要る時はこれをコピペ
+  // print(bboxesGeoJson); // GeoJsonファイル要る時はこれをコピペ
   // TODO: クリックされた時用のソースとレイヤーを作る. ここから再開!!
 }

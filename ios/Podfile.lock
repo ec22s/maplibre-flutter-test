@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - MapLibre (6.5.0)
-  - maplibre_gl (0.0.1):
+  - MapLibre (6.19.1)
+  - maplibre_gl (0.25.0):
     - Flutter
-    - MapLibre (= 6.5.0)
+    - MapLibre (= 6.19.1)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/maplibre_gl/ios"
 
 SPEC CHECKSUMS:
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  MapLibre: 0ebfa9329d313cec8bf0a5ba5a336a1dc903785e
-  maplibre_gl: 7fc8dd5a5f356891c38f227fe1647d33b9af0400
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  MapLibre: 7f24faba45439f80ccb0f83393c29fa32cb81952
+  maplibre_gl: a2114567cbd1065866614fbd34dfb75ab782aaa2
 
-PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+PODFILE CHECKSUM: a57f30d18f102dd3ce366b1d62a55ecbef2158e5
 
 COCOAPODS: 1.16.2

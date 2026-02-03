@@ -1,10 +1,8 @@
 # maplibre-flutter-test
 
-### Android, iOS, Chorme で動かすテンプレ
+2026年1月時点で [flutter-maplibre-gl-example](https://github.com/stadiamaps/flutter-maplibre-gl-example) をAndroid, iOS, Chormeで動かしたテスト
 
-- original: https://github.com/stadiamaps/flutter-maplibre-gl-example
-
-### 主な変更点
+### オリジナルからの変更点
 
   - 最初にローカルの `style.json` を読み込み、背景地図を変更
 
@@ -12,75 +10,41 @@
 
        https://github.com/maplibre/flutter-maplibre-gl/blob/main/maplibre_gl/lib/src/maplibre_map.dart#L121-L130
 
-  - オリジナルにあった `annotation clustering` と `offline caching` を省略
+  - `Flutter 3.38` , `maplibre_gl 0.25.0` を使用
 
-  - `maplibre_gl 0.20.0` を使用
+    - 合わせて Android, iOS のビルド設定を修正
 
-    - 0.21.0はChromeで `Unsupported operation: Platform._operatingSystem` が出る
-
-  - `Flutter 3.24.5` を使用
-
-    - 3.29にすると `io.flutter.plugin.common.PluginRegistry.Registrar` がなくAndroidで動かない
-
-      参考: https://qiita.com/NikoSan/items/9a7b3dc16bb0caa3d59e
+  - `annotation clustering` , `offline caching` , `test/widget_test.dart` を省略
 
 <br>
 
-### 動作確認環境
+### ビルド環境
 ```
-$ flutter doctor -v
-[!] Flutter (Channel [user-branch], 3.24.5, on macOS 14.7.1 23H222 darwin-x64, locale en-JP)
-    ! Flutter version 3.24.5 on channel [user-branch] at
-      /usr/local/Caskroom/flutter/3.29.2/flutter
-      Currently on an unknown channel. Run `flutter channel` to switch to an
-      official channel.
-      If that doesn't fix the issue, reinstall Flutter by following instructions
-      at https://flutter.dev/setup.
-    ! Upstream repository unknown source is not a standard remote.
-      Set environment variable "FLUTTER_GIT_URL" to unknown source to dismiss this
-      error.
-    • Framework revision dec2ee5c1f (5 months ago), 2024-11-13 11:13:06 -0800
-    • Engine revision a18df97ca5
-    • Dart version 3.5.4
-    • DevTools version 2.37.3
-    • If those were intentional, you can disregard the above warnings; however it
-      is recommended to use "git" directly to perform update checks and upgrades.
-
+$ flutter doctor
+[✓] Flutter (Channel stable, 3.38.9, on macOS 15.7.3 24G419 darwin-x64, locale en-JP)
 [✓] Android toolchain - develop for Android devices (Android SDK version 36.0.0)
-    • Android SDK at /Users/user/Library/Android/sdk
-    • Platform android-36, build-tools 36.0.0
-    • Java binary at: /Users/user/.jenv/versions/21.0.7/bin/java
-    • Java version OpenJDK Runtime Environment Homebrew (build 21.0.7)
-    • All Android licenses accepted.
-
-[✓] Xcode - develop for iOS and macOS (Xcode 16.2)
-    • Xcode at /Applications/Xcode.app/Contents/Developer
-    • Build 16C5032a
-    • CocoaPods version 1.16.2
-
+[✓] Xcode - develop for iOS and macOS (Xcode 26.2)
 [✓] Chrome - develop for the web
-    • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
-
-[✓] Android Studio (version 2024.3)
-    • Android Studio at /Applications/Android Studio.app/Contents
-    • Flutter plugin can be installed from:
-      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
-    • Dart plugin can be installed from:
-      🔨 https://plugins.jetbrains.com/plugin/6351-dart
-    • Java version OpenJDK Runtime Environment (build 21.0.5+-13047016-b750.29)
-...
 ```
-✅ Chrome 135.0.7049.96 (macOS 14.7.1)
 
-✅ iPhone 7 (iOS 15.8.4)
+### 動作確認環境
 
-✅ PLE-701L (Android 10, LineageOS 17.1)
+- Chrome 144.0.7559.110
+
+- iOS Simulator (iPad 10th, iOS 17.2)
+
+- iOS 実機 (iPhone 7, iOS 15.8.6)
+
+- Android Virtual Device (Medium Tablet, Android 16.0)
+
+
 
 <br>
 
 以下、オリジナルのREADME
 
----
+<br>
+
 
 # flutter_maplibre_demo
 

@@ -1,6 +1,8 @@
 # maplibre-flutter-test
 
-2026年1月時点で [flutter-maplibre-gl-example](https://github.com/stadiamaps/flutter-maplibre-gl-example) をAndroid, iOS, Chormeで動かしたテスト
+2026年2月時点で [flutter-maplibre-gl-example](https://github.com/stadiamaps/flutter-maplibre-gl-example) をAndroid, iOS, Chormeで動かしたテスト
+
+<br>
 
 ### オリジナルからの変更点
 
